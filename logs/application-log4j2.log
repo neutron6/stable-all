@@ -1,0 +1,17 @@
+2023-11-21 22:57:32 [main] INFO  : Starting RsnApplicationTests using Java 17.0.7 on LAPTOP-C8BH0QO9 with PID 19288 (started by rushi in E:\repos\project0\rsn)
+2023-11-21 22:57:32 [main] INFO  : No active profile set, falling back to 1 default profile: "default"
+2023-11-21 22:57:34 [main] INFO  : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-21 22:57:34 [main] INFO  : Finished Spring Data repository scanning in 160 ms. Found 4 JPA repository interfaces.
+2023-11-21 22:57:36 [main] INFO  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-21 22:57:36 [main] INFO  : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-21 22:57:37 [main] INFO  : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-21 22:57:37 [main] INFO  : HikariPool-1 - Starting...
+2023-11-21 22:57:38 [main] INFO  : HikariPool-1 - Start completed.
+2023-11-21 22:57:38 [main] INFO  : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-11-21 22:57:40 [main] INFO  : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-21 22:57:40 [main] INFO  : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-21 22:57:43 [main] WARN  : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-21 22:57:47 [main] INFO  : Started RsnApplicationTests in 15.328 seconds (JVM running for 24.144)
+2023-11-21 22:57:47 [SpringApplicationShutdownHook] INFO  : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-21 22:57:47 [SpringApplicationShutdownHook] INFO  : HikariPool-1 - Shutdown initiated...
+2023-11-21 22:57:47 [SpringApplicationShutdownHook] INFO  : HikariPool-1 - Shutdown completed.
