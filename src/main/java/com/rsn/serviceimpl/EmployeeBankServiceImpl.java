@@ -60,7 +60,7 @@ public class EmployeeBankServiceImpl implements EmployeeBankService {
 				throw new InvalidAccountPinException();
 			}
 		} else {
-			throw new RecordNotFoundException(); 
+			throw new RecordNotFoundException();
 
 		}
 
@@ -72,16 +72,18 @@ public class EmployeeBankServiceImpl implements EmployeeBankService {
 		return employeeBankDatas;
 	}
 
-	// *** Methods for common data fetching ** TAKE INPUT AS ARG BANKID***
+	/**
+	 * Retrieves the bank balance of an employee based on the provided bank ID.
+	 *
+	 * @param bankId The unique identifier of the bank associated with the employee.
+	 * @return The bank balance of the employee associated with the provided bank
+	 *         ID.
+	 * @throws RecordNotFoundException If no record is found for the given bank ID,
+	 *                                 indicating that the employee's bank data is
+	 *                                 not available.
+	 */
 	public String getEmployeeBalance(Integer bankId) throws RecordNotFoundException {
-		Optional<EmployeeBankData> employee = employeeBankDataRepo.findById(bankId);
-
-		if (employee.isPresent()) {
-			EmployeeBankData employeeBankData = employee.get();
-			String n = employeeBankData.getBankBalance().toString();
-			return n;
-		}
-		throw new RecordNotFoundException();
+		return employeeBankDataRepo.findById(bankId).map(EmployeeBankData::getBankBalance)
+				.orElseThrow(RecordNotFoundException::new);
 	}
-
 }

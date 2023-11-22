@@ -33,9 +33,7 @@ public class ItemController {
 	@Autowired
 	private EmployeeBankServiceImpl employeeBankServiceImpl;
 
-	// create
-	// remained***************************************************************
-
+	
 	@PostMapping("/createitem")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<String> createItemAPI(@RequestBody List<Items> items) {
