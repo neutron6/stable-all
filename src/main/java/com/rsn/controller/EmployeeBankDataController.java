@@ -55,7 +55,7 @@ public class EmployeeBankDataController {
 		String p = employeeBankServiceImpl.getEmployeeBalance(bankId).toString();
 		logger.info("****** withdrawYourAmountAPI is working ********");
 		return ResponseEntity.ok("** Transaction Completed **" + " Bank Balance->> " + p);
-	}
+	} 
  
 	@GetMapping("/search")
 	@ResponseStatus(value = HttpStatus.FOUND)
