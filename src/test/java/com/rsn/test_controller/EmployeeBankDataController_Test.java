@@ -54,7 +54,7 @@ public class EmployeeBankDataController_Test {
 		when(employeeBankServiceImpl.getEmployeeBankDataByBankId(1)).thenReturn(list);
 		assertNotNull(employeeBankDataController.getEmployeeBankDetailsAPI(1));
 	}
- 
+  
 	@Test
 	void test_withdrawYourAmountAPI() throws RecordNotFoundException, InvalidAccountPinException, OutOfLimitException {
 		AccountPin accountPin = new AccountPin();
