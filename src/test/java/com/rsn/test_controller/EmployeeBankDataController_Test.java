@@ -49,7 +49,7 @@ public class EmployeeBankDataController_Test {
 	void test_getEmployeeBankDetailsAPI() throws RecordNotFoundException {
 		EmployeeBankData employeeBankData = new EmployeeBankData(1, "5000", "savings", null);
 		List<EmployeeBankData> list = new ArrayList<>();
-		list.add(employeeBankData);
+		list.add(employeeBankData); 
 
 		when(employeeBankServiceImpl.getEmployeeBankDataByBankId(1)).thenReturn(list);
 		assertNotNull(employeeBankDataController.getEmployeeBankDetailsAPI(1));
