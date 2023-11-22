@@ -82,7 +82,7 @@ public class EmployeeController_Test {
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		when(employeeServiceImpl.getAllEmployeeData()).thenReturn(list);
-		assertNotNull(mockEmployeeController.getAllData());
+		assertNotNull(mockEmployeeController.getAllData()); 
 	}
 
 	@Test
