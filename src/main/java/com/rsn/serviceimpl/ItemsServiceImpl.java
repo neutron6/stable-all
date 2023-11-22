@@ -34,7 +34,7 @@ public class ItemsServiceImpl implements ItemsService {
 		EmployeeBankData employeeBankData = employee.get();
 
 		String moneyX = employeeBankData.getBankBalance();
-		Integer payment = Integer.parseInt(moneyX); 
+		Integer payment = Integer.parseInt(moneyX);
 
 		Optional<Items> iOptional = itemsRepo.findByItemName(itemName);
 		Items items = iOptional.get();
@@ -50,22 +50,28 @@ public class ItemsServiceImpl implements ItemsService {
 		return null;
 	}
 
+	/**
+	 * Retrieves the name of an item based on its name.
+	 *
+	 * @param itemName The name of the item to be retrieved.
+	 * @return The name of the item, if found.
+	 * @throws ItemNotFoundException If the item with the specified name is not
+	 *                               found.
+	 */
 	public String getItem(String itemName) throws ItemNotFoundException {
-		Optional<Items> iteOptional = itemsRepo.findByItemName(itemName);
-		if (iteOptional.isPresent()) {
-			return iteOptional.get().getItemName();
-		} else {
-			throw new ItemNotFoundException();
-		}
+		return itemsRepo.findByItemName(itemName).map(Items::getItemName).orElseThrow(ItemNotFoundException::new);
 	}
 
+	/**
+	 * Retrieves the price of an item based on its name.
+	 *
+	 * @param itemName The name of the item whose price is to be retrieved.
+	 * @return The price of the item, if found.
+	 * @throws ItemNotFoundException If the item with the specified name is not
+	 *                               found.
+	 */
 	public String getItemPrice(String itemName) throws ItemNotFoundException {
-		Optional<Items> iteOptional = itemsRepo.findByItemName(itemName);
-		if (iteOptional.isPresent()) {
-			return iteOptional.get().getItemPrice();
-		} else {
-			throw new ItemNotFoundException();
-		}
+		return itemsRepo.findByItemName(itemName).map(Items::getItemPrice).orElseThrow(ItemNotFoundException::new);
 	}
 
 }
