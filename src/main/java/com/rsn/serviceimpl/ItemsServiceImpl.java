@@ -28,7 +28,7 @@ public class ItemsServiceImpl implements ItemsService {
 	}
 
 	@Override
-	public Items buyItems(String itemName, String quantity, Integer bankId) {
+	public Items buyItems(String itemName, String quantity, Integer bankId) throws ItemNotFoundException {
 
 		Optional<EmployeeBankData> employee = employeeBankDataRepo.findById(bankId);
 		EmployeeBankData employeeBankData = employee.get();
@@ -46,8 +46,9 @@ public class ItemsServiceImpl implements ItemsService {
 			employeeBankData.setBankBalance(bankBalance);
 			employeeBankDataRepo.save(employeeBankData);
 			return itemsRepo.save(items);
+		} else {
+			throw new ItemNotFoundException();
 		}
-		return null;
 	}
 
 	/**
