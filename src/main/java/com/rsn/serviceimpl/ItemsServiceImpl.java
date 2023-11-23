@@ -6,7 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rsn.exception.InvalidInputException;
 import com.rsn.exception.ItemNotFoundException;
+import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.EmployeeBankData;
 import com.rsn.model.Items;
 import com.rsn.repository.EmployeeBankDataRepo;
@@ -28,27 +30,29 @@ public class ItemsServiceImpl implements ItemsService {
 	}
 
 	@Override
-	public Items buyItems(String itemName, String quantity, Integer bankId) throws ItemNotFoundException {
+	public Items buyItems(String itemName, String quantity, Integer bankId)
+			throws ItemNotFoundException, RecordNotFoundException, InvalidInputException {
+		if (itemName != null && quantity != null && bankId != null) {
+			Optional<EmployeeBankData> employee = Optional
+					.ofNullable(employeeBankDataRepo.findById(bankId).orElseThrow(() -> new RecordNotFoundException()));
+			EmployeeBankData employeeBankData = employee.get();
+			String moneyX = employeeBankData.getBankBalance();
+			Integer payment = Integer.parseInt(moneyX);
+			Optional<Items> iOptional = Optional
+					.ofNullable(itemsRepo.findByItemName(itemName).orElseThrow(() -> new ItemNotFoundException()));
+			Items items = iOptional.get();
+			Integer price = Integer.parseInt(items.getItemPrice());
+			Integer quantityX = Integer.parseInt(quantity);
 
-		Optional<EmployeeBankData> employee = employeeBankDataRepo.findById(bankId);
-		EmployeeBankData employeeBankData = employee.get();
-
-		String moneyX = employeeBankData.getBankBalance();
-		Integer payment = Integer.parseInt(moneyX);
-
-		Optional<Items> iOptional = itemsRepo.findByItemName(itemName);
-		Items items = iOptional.get();
-		Integer price = Integer.parseInt(items.getItemPrice());
-		Integer quantityX = Integer.parseInt(quantity);
-		if (iOptional.isPresent()) {
 			Integer buy = payment - (price * quantityX);
 			String bankBalance = buy.toString();
 			employeeBankData.setBankBalance(bankBalance);
 			employeeBankDataRepo.save(employeeBankData);
 			return itemsRepo.save(items);
 		} else {
-			throw new ItemNotFoundException();
+			throw new InvalidInputException();
 		}
+
 	}
 
 	/**
