@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rsn.exception.InvalidInputException;
 import com.rsn.exception.ItemNotFoundException;
 import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.Items;
@@ -33,7 +34,6 @@ public class ItemController {
 	@Autowired
 	private EmployeeBankServiceImpl employeeBankServiceImpl;
 
-	
 	@PostMapping("/createitem")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<String> createItemAPI(@RequestBody List<Items> items) {
@@ -45,10 +45,12 @@ public class ItemController {
 	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<String> buyItemAPI(@PathVariable("itemName") String itemsName,
 			@PathVariable("quantity") String quantity, @PathVariable("bankId") Integer bankId)
-			throws ItemNotFoundException, RecordNotFoundException {
+			throws ItemNotFoundException, RecordNotFoundException, InvalidInputException {
 		String name = itemsServiceImpl.getItem(itemsName).toString();
 		String price = itemsServiceImpl.getItemPrice(itemsName).toString();
+
 		itemsServiceImpl.buyItems(itemsName, quantity, bankId);
+
 		String bb = employeeBankServiceImpl.getEmployeeBalance(bankId).toString();
 		logger.info("***** buyItemAPI is working *****");
 		return ResponseEntity.ok("**** Transaction successfully **** YOU BUY AN ITEM " + name + " HAVING PRICE " + price
