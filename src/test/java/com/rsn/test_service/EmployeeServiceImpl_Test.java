@@ -43,17 +43,6 @@ public class EmployeeServiceImpl_Test {
 	}
 
 	@Test
-	public void test_createEmployeeAccount() {
-		EmployeeBankData employeeBankData = new EmployeeBankData(1, "5000", "savings", null);
-		Employee employee = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), employeeBankData);
-		List<Employee> list = new ArrayList<>();
-		list.add(employee);
-		Mockito.when(mock_EmployeeRepo.save(any())).thenReturn(employee);
-		assertNotNull(mockEmployeeServiceImpl.createEmployeeAccount(list));
-	}
-
-	@Test
 	public void test_getAllEmployeeData() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
 				LocalDate.now(), null);

@@ -22,13 +22,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 	Logger logger = Logger.getLogger(getClass().getName());
 
 	@Override
-	public List<Employee> createEmployeeAccount(List<Employee> employee) {
-		// TODO Auto-generated method stub
-		logger.config("create account api");
-		return employeeRepo.saveAll(employee);
-	}
-
-	@Override
 	public List<Employee> getAllEmployeeData() {
 		// TODO Auto-generated method stub
 		return employeeRepo.findAll();

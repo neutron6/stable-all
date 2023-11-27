@@ -36,15 +36,6 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeRepo employeeRepo;
 
-	@PostMapping("/createaccount")
-	@ResponseStatus(value = HttpStatus.CREATED)
-	public ResponseEntity<String> createAccountAPI(@RequestBody List<Employee> employee) {
-		System.out.println("create api");
-		employeeServiceImpl.createEmployeeAccount(employee);
-		logger.info("****** createAccountAPI is working ********");
-		return ResponseEntity.ok("** Account created successfully **");
-	}
-
 	@PutMapping("/updateaccount/{id}")
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public ResponseEntity<String> updateAccountAPI(@PathVariable("id") Integer id, @RequestBody Employee employee)

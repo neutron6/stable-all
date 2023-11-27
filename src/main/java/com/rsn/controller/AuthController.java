@@ -4,6 +4,8 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.AuthenticationException;
@@ -11,6 +13,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rsn.model.Employee;
@@ -32,12 +35,13 @@ public class AuthController {
 	private PasswordEncoder passwordEncoder;
 
 	@PostMapping("/register")
-	public Map<String, Object> registerHandler(@RequestBody Employee employee) {
+	@ResponseStatus(value = HttpStatus.CREATED)
+	public ResponseEntity<String> registerHandler(@RequestBody Employee employee) {
 		String encodedPass = passwordEncoder.encode(employee.getEmployeePassword());
 		employee.setEmployeePassword(encodedPass);
 		employee = employeeRepo.save(employee);
 		String token = jwtUtil.generateToken(employee.getEmployeeEmail());
-		return Collections.singletonMap("jwt-token", token);
+		return ResponseEntity.ok("** Account created SuccessFully ✔ **");
 	}
 
 	@PostMapping("/login")
@@ -52,7 +56,7 @@ public class AuthController {
 
 			return Collections.singletonMap("jwt-token", token);
 		} catch (AuthenticationException authExc) {
-			throw new RuntimeException("Invalid Login Credentials");
+			throw new RuntimeException("Invalid Login Credentials ");
 		}
 	}
 
