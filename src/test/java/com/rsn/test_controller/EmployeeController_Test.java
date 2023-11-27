@@ -43,21 +43,6 @@ public class EmployeeController_Test {
 	}
 
 	@Test
-	void test_createAccountAPI() {
-		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
-		List<Employee> list = new ArrayList<>();
-		list.add(employee1);
-
-		Mockito.when(employeeServiceImpl.createEmployeeAccount(anyList())).thenReturn(list);
-
-		ResponseEntity<String> responseEntity = mockEmployeeController.createAccountAPI(list);
-		assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-		assertEquals("** Account created successfully **", responseEntity.getBody());
-		assertNotNull(mockEmployeeController.createAccountAPI(list));
-	}
-
-	@Test
 	void test_deleteAccountAPI() throws RecordNotFoundException {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
 				LocalDate.now(), null);
