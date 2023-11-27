@@ -1,26 +1,47 @@
-2023-11-22 15:27:52 [main] INFO  : Starting RsnApplicationTests using Java 17.0.7 on LAPTOP-C8BH0QO9 with PID 1140 (started by rushi in E:\repos\stable-all\rsn)
-2023-11-22 15:27:52 [main] INFO  : No active profile set, falling back to 1 default profile: "default"
-2023-11-22 15:27:53 [main] INFO  : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2023-11-22 15:27:53 [main] INFO  : Finished Spring Data repository scanning in 81 ms. Found 4 JPA repository interfaces.
-2023-11-22 15:27:54 [main] INFO  : HHH000204: Processing PersistenceUnitInfo [name: default]
-2023-11-22 15:27:55 [main] INFO  : HHH000412: Hibernate ORM core version 5.6.15.Final
-2023-11-22 15:27:55 [main] INFO  : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
-2023-11-22 15:27:55 [main] INFO  : HikariPool-1 - Starting...
-2023-11-22 15:27:56 [main] INFO  : HikariPool-1 - Start completed.
-2023-11-22 15:27:56 [main] INFO  : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
-2023-11-22 15:27:57 [main] INFO  : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2023-11-22 15:27:57 [main] INFO  : Initialized JPA EntityManagerFactory for persistence unit 'default'
-2023-11-22 15:27:58 [main] WARN  : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2023-11-22 15:28:01 [main] INFO  : Started RsnApplicationTests in 9.129 seconds (JVM running for 11.27)
-2023-11-22 15:28:02 [main] INFO  : ****** getEmployeeBankDetailsAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** withdrawYourAmountAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** searchAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** createAccountAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** createAccountAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** getAllData is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** deleteAccountAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** updateAccountAPI is working ********
-2023-11-22 15:28:02 [main] INFO  : ****** searchAPI is working ********
-2023-11-22 15:28:03 [SpringApplicationShutdownHook] INFO  : Closing JPA EntityManagerFactory for persistence unit 'default'
-2023-11-22 15:28:03 [SpringApplicationShutdownHook] INFO  : HikariPool-1 - Shutdown initiated...
-2023-11-22 15:28:03 [SpringApplicationShutdownHook] INFO  : HikariPool-1 - Shutdown completed.
+2023-11-27 16:14:56 [restartedMain] INFO  : Starting RsnApplication using Java 17.0.7 on LAPTOP-C8BH0QO9 with PID 19960 (E:\repos\stable-all\rsn\target\classes started by rushi in E:\repos\stable-all\rsn)
+2023-11-27 16:14:56 [restartedMain] INFO  : No active profile set, falling back to 1 default profile: "default"
+2023-11-27 16:14:56 [restartedMain] INFO  : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-11-27 16:14:56 [restartedMain] INFO  : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-11-27 16:14:56 [restartedMain] INFO  : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-11-27 16:14:57 [restartedMain] INFO  : Finished Spring Data repository scanning in 73 ms. Found 4 JPA repository interfaces.
+2023-11-27 16:14:58 [restartedMain] INFO  : Tomcat initialized with port(s): 8080 (http)
+2023-11-27 16:14:58 [restartedMain] INFO  : Initializing ProtocolHandler ["http-nio-8080"]
+2023-11-27 16:14:58 [restartedMain] INFO  : Starting service [Tomcat]
+2023-11-27 16:14:58 [restartedMain] INFO  : Starting Servlet engine: [Apache Tomcat/9.0.76]
+2023-11-27 16:14:58 [restartedMain] INFO  : Initializing Spring embedded WebApplicationContext
+2023-11-27 16:14:58 [restartedMain] INFO  : Root WebApplicationContext: initialization completed in 2020 ms
+2023-11-27 16:14:58 [restartedMain] INFO  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-11-27 16:14:58 [restartedMain] INFO  : HHH000412: Hibernate ORM core version 5.6.15.Final
+2023-11-27 16:14:58 [restartedMain] INFO  : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2023-11-27 16:14:59 [restartedMain] INFO  : HikariPool-1 - Starting...
+2023-11-27 16:14:59 [restartedMain] INFO  : HikariPool-1 - Start completed.
+2023-11-27 16:14:59 [restartedMain] INFO  : HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect
+2023-11-27 16:15:00 [restartedMain] INFO  : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-11-27 16:15:00 [restartedMain] INFO  : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-11-27 16:15:00 [restartedMain] WARN  : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-11-27 16:15:01 [restartedMain] INFO  : Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@48abb95, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31303fc2, org.springframework.security.web.context.SecurityContextPersistenceFilter@cbebba, org.springframework.security.web.header.HeaderWriterFilter@26fa225, org.springframework.web.filter.CorsFilter@4302348e, org.springframework.security.web.authentication.logout.LogoutFilter@64e72c1c, com.rsn.security.JWTFilter@309914bd, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7bd56f21, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@58c93a32, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@2668f486, org.springframework.security.web.session.SessionManagementFilter@72bb68ae, org.springframework.security.web.access.ExceptionTranslationFilter@5e9fcb67, org.springframework.security.web.access.intercept.AuthorizationFilter@33af4faa]
+2023-11-27 16:15:02 [restartedMain] INFO  : LiveReload server is running on port 35729
+2023-11-27 16:15:02 [restartedMain] INFO  : Starting ProtocolHandler ["http-nio-8080"]
+2023-11-27 16:15:02 [restartedMain] INFO  : Tomcat started on port(s): 8080 (http) with context path ''
+2023-11-27 16:15:02 [restartedMain] INFO  : Started RsnApplication in 7.067 seconds (JVM running for 10.79)
+2023-11-27 16:15:08 [http-nio-8080-exec-2] INFO  : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-11-27 16:15:08 [http-nio-8080-exec-2] INFO  : Initializing Servlet 'dispatcherServlet'
+2023-11-27 16:15:08 [http-nio-8080-exec-2] INFO  : Completed initialization in 1 ms
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Application shutdown requested.
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Pausing ProtocolHandler ["http-nio-8080"]
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Stopping service [Tomcat]
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Destroying Spring FrameworkServlet 'dispatcherServlet'
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] WARN  : The web application [ROOT] appears to have started a thread named [HikariPool-1 housekeeper] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base@17.0.7/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base@17.0.7/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:252)
+ java.base@17.0.7/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.awaitNanos(AbstractQueuedSynchronizer.java:1672)
+ java.base@17.0.7/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1182)
+ java.base@17.0.7/java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:899)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1062)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1122)
+ java.base@17.0.7/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+ java.base@17.0.7/java.lang.Thread.run(Thread.java:833)
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Stopping ProtocolHandler ["http-nio-8080"]
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : Closing JPA EntityManagerFactory for persistence unit 'default'
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : HikariPool-1 - Shutdown initiated...
+2023-11-27 16:16:12 [RMI TCP Connection(11)-127.0.0.1] INFO  : HikariPool-1 - Shutdown completed.
