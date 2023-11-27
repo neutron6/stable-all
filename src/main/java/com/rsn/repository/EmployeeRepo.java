@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.rsn.model.Employee;
-import com.rsn.model.EmployeeBankData;
 
 @Repository
 public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
@@ -26,4 +25,6 @@ public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
 			+ "Or e.employee_married_status LIKE CONCAT('%',:query, '%')"
 			+ "Or e.employee_resident_address LIKE CONCAT('%',:query, '%')", nativeQuery = true)
 	List<Employee> searchEmployees(String query);
+
+	Optional<Employee> findByEmployeeEmail(String employeeEmail);
 }

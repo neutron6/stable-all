@@ -15,6 +15,8 @@ import javax.persistence.OneToOne;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @EntityScan("com.rsn.*")
 @Transactional
@@ -39,11 +41,16 @@ public class Employee {
 	@Column(name = "Employee_Married_status")
 	private String employeeMarried_status;
 
-	@Column(name = "Employee_Email_ID")
-	private String employee_Email_ID;
+	@Column(name = "Employee_Email")
+	private String employeeEmail;
 
-	@Column(name = "Employee_Email_Password")
-	private String employeeEmail_Password;
+	/*
+	 * The @JsonProperty(access = JsonProperty.Access.WRITE_ONLY) prevents the
+	 * password field from being included in the JSON response.
+	 */
+	@Column(name = "Employee_Password")
+	//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private String employeePassword;
 
 	@Column(name = "Employee_Joining_Date")
 	private LocalDate employeeJoining_Date;
@@ -100,20 +107,20 @@ public class Employee {
 		this.employeeMarried_status = employeeMarried_status;
 	}
 
-	public String getEmployee_Email_ID() {
-		return employee_Email_ID;
+	public String getEmployeeEmail() {
+		return employeeEmail;
 	}
 
-	public void setEmployee_Email_ID(String employee_Email_ID) {
-		this.employee_Email_ID = employee_Email_ID;
+	public void setEmployeeEmail(String employeeEmail) {
+		this.employeeEmail = employeeEmail;
 	}
 
-	public String getEmployeeEmail_Password() {
-		return employeeEmail_Password;
+	public String getEmployeePassword() {
+		return employeePassword;
 	}
 
-	public void setEmployeeEmail_Password(String employeeEmail_Password) {
-		this.employeeEmail_Password = employeeEmail_Password;
+	public void setEmployeePassword(String employeePassword) {
+		this.employeePassword = employeePassword;
 	}
 
 	public LocalDate getEmployeeJoining_Date() {
@@ -133,8 +140,8 @@ public class Employee {
 	}
 
 	public Employee(Integer id, String employeeFirst_Name, String employeeLast_Name, String employeeCity_Name,
-			String employeeResident_Address, String employeeMarried_status, String employee_Email_ID,
-			String employeeEmail_Password, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData) {
+			String employeeResident_Address, String employeeMarried_status, String employeeEmail,
+			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData) {
 		super();
 		this.id = id;
 		this.employeeFirst_Name = employeeFirst_Name;
@@ -142,8 +149,8 @@ public class Employee {
 		this.employeeCity_Name = employeeCity_Name;
 		this.employeeResident_Address = employeeResident_Address;
 		this.employeeMarried_status = employeeMarried_status;
-		this.employee_Email_ID = employee_Email_ID;
-		this.employeeEmail_Password = employeeEmail_Password;
+		this.employeeEmail = employeeEmail;
+		this.employeePassword = employeePassword;
 		this.employeeJoining_Date = employeeJoining_Date;
 		this.employeeBankData = employeeBankData;
 	}
@@ -153,6 +160,20 @@ public class Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", employeeFirst_Name=" + employeeFirst_Name + ", employeeLast_Name="
+				+ employeeLast_Name + ", employeeCity_Name=" + employeeCity_Name + ", employeeResident_Address="
+				+ employeeResident_Address + ", employeeMarried_status=" + employeeMarried_status + ", employeeEmail="
+				+ employeeEmail + ", employeePassword=" + employeePassword + ", employeeJoining_Date="
+				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", getId()=" + getId()
+				+ ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name() + ", getEmployeeLast_Name()="
+				+ getEmployeeLast_Name() + ", getEmployeeCity_Name()=" + getEmployeeCity_Name()
+				+ ", getEmployeeResident_Address()=" + getEmployeeResident_Address() + ", getEmployeeMarried_status()="
+				+ getEmployeeMarried_status() + ", getEmployeeEmail()=" + getEmployeeEmail()
+				+ ", getEmployeePassword()=" + getEmployeePassword() + ", getEmployeeJoining_Date()="
+				+ getEmployeeJoining_Date() + ", getEmployeeBankData()=" + getEmployeeBankData() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 
 }

@@ -53,11 +53,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		EmployeeBankData employeeBankData = employee.getEmployeeBankData();
 		if (employeesData.isPresent()) {
 			Employee employeeX = employeesData.get();
-			employeeX.setEmployee_Email_ID(employee.getEmployee_Email_ID());
+			employeeX.setEmployeeEmail(employee.getEmployeeEmail());
 			employeeX.setEmployeeCity_Name(employee.getEmployeeCity_Name());
 			employeeX.setEmployeeFirst_Name(employee.getEmployeeFirst_Name());
 			employeeX.setEmployeeLast_Name(employee.getEmployeeLast_Name());
-			employeeX.setEmployeeEmail_Password(employee.getEmployeeEmail_Password());
+			employeeX.setEmployeePassword(employee.getEmployeePassword());
 			employeeX.setEmployeeMarried_status(employee.getEmployeeMarried_status());
 			employeeX.setEmployeeResident_Address(employee.getEmployeeResident_Address());
 			return employeeRepo.save(employeeX);
