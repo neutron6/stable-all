@@ -61,7 +61,7 @@ public class AuthController_Test {
 	}
 
 	@Test
-	public void registerHandler_Test() {
+	public void test_registerHandler() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
 				LocalDate.now(), null);
 		String encodedPass = passwordEncoder.encode(employee1.getEmployeePassword());
@@ -72,7 +72,7 @@ public class AuthController_Test {
 	}
 
 	@Test
-	void loginHandler_Test() {
+	void test_loginHandler() {
 		LoginCredentials body = new LoginCredentials("rushi@gmail.com", "123");
 		UsernamePasswordAuthenticationToken authInputToken = new UsernamePasswordAuthenticationToken(
 				body.getEmployeeEmail(), body.getEmployeePassword());
@@ -83,23 +83,14 @@ public class AuthController_Test {
 	}
 
 	@Test
-	void loginHandler_TestExp() {
+	void test_loginHandlerExp() {
 		 when(authenticationManager.authenticate(any(UsernamePasswordAuthenticationToken.class)))
          .thenThrow(new AuthenticationException("Invalid credentials") {});
-
- // Creating a LoginCredentials object for testing
- LoginCredentials loginCredentials = new LoginCredentials("test@example.com", "wrongPassword");
-
- // Calling the loginHandler method and expecting a RuntimeException
- RuntimeException exception = assertThrows(RuntimeException.class,
+        LoginCredentials loginCredentials = new LoginCredentials("test@example.com", "wrongPassword");
+        RuntimeException exception = assertThrows(RuntimeException.class,
          () -> authController.loginHandler(loginCredentials));
-
- // Asserting the exception message
- assertEquals("Invalid Login Credentials", exception.getMessage());
-
- // Verify that authenticate was called
- verify(authenticationManager, times(1)).authenticate(any(UsernamePasswordAuthenticationToken.class));
- // Verify that generateToken was not called since authentication failed
- verify(jwtUtil, never()).generateToken(anyString());;
+        assertEquals("Invalid Login Credentials", exception.getMessage());
+        verify(authenticationManager, times(1)).authenticate(any(UsernamePasswordAuthenticationToken.class));
+        verify(jwtUtil, never()).generateToken(anyString());;
 	}
 }
