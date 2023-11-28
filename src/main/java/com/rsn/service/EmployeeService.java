@@ -7,7 +7,6 @@ import com.rsn.model.Employee;
 import com.rsn.model.EmployeeBankData;
 
 public interface EmployeeService {
-	List<Employee> createEmployeeAccount(List<Employee> employee);
 
 	List<Employee> getAllEmployeeData();
 

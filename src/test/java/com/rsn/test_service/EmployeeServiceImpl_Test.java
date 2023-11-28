@@ -3,6 +3,7 @@ package com.rsn.test_service;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.Suite.SuiteClasses;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -26,6 +28,7 @@ import com.rsn.repository.EmployeeRepo;
 import com.rsn.serviceimpl.EmployeeServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
+@SuiteClasses(EmployeeServiceImpl.class)
 public class EmployeeServiceImpl_Test {
 
 	@InjectMocks
@@ -37,17 +40,6 @@ public class EmployeeServiceImpl_Test {
 	@BeforeEach
 	void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
-	}
-
-	@Test
-	public void test_createEmployeeAccount() {
-		EmployeeBankData employeeBankData = new EmployeeBankData(1, "5000", "savings", null);
-		Employee employee = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), employeeBankData);
-		List<Employee> list = new ArrayList<>();
-		list.add(employee);
-		Mockito.when(mock_EmployeeRepo.save(employee)).thenReturn(employee);
-		assertNotNull(mockEmployeeServiceImpl.createEmployeeAccount(list));
 	}
 
 	@Test
