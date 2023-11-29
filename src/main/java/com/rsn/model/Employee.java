@@ -49,7 +49,7 @@ public class Employee {
 	 * password field from being included in the JSON response.
 	 */
 	@Column(name = "Employee_Password")
-	//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String employeePassword;
 
 	@Column(name = "Employee_Joining_Date")
@@ -58,6 +58,10 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_empbank_id")
 	private EmployeeBankData employeeBankData;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "fk_profid")
+	private Profiles profiles;
 
 	public Integer getId() {
 		return id;
@@ -139,9 +143,18 @@ public class Employee {
 		this.employeeBankData = employeeBankData;
 	}
 
+	public Profiles getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(Profiles profiles) {
+		this.profiles = profiles;
+	}
+
 	public Employee(Integer id, String employeeFirst_Name, String employeeLast_Name, String employeeCity_Name,
 			String employeeResident_Address, String employeeMarried_status, String employeeEmail,
-			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData) {
+			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData,
+			Profiles profiles) {
 		super();
 		this.id = id;
 		this.employeeFirst_Name = employeeFirst_Name;
@@ -153,6 +166,7 @@ public class Employee {
 		this.employeePassword = employeePassword;
 		this.employeeJoining_Date = employeeJoining_Date;
 		this.employeeBankData = employeeBankData;
+		this.profiles = profiles;
 	}
 
 	public Employee() {
@@ -166,14 +180,15 @@ public class Employee {
 				+ employeeLast_Name + ", employeeCity_Name=" + employeeCity_Name + ", employeeResident_Address="
 				+ employeeResident_Address + ", employeeMarried_status=" + employeeMarried_status + ", employeeEmail="
 				+ employeeEmail + ", employeePassword=" + employeePassword + ", employeeJoining_Date="
-				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", getId()=" + getId()
-				+ ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name() + ", getEmployeeLast_Name()="
-				+ getEmployeeLast_Name() + ", getEmployeeCity_Name()=" + getEmployeeCity_Name()
-				+ ", getEmployeeResident_Address()=" + getEmployeeResident_Address() + ", getEmployeeMarried_status()="
-				+ getEmployeeMarried_status() + ", getEmployeeEmail()=" + getEmployeeEmail()
-				+ ", getEmployeePassword()=" + getEmployeePassword() + ", getEmployeeJoining_Date()="
-				+ getEmployeeJoining_Date() + ", getEmployeeBankData()=" + getEmployeeBankData() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", profiles=" + profiles
+				+ ", getId()=" + getId() + ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name()
+				+ ", getEmployeeLast_Name()=" + getEmployeeLast_Name() + ", getEmployeeCity_Name()="
+				+ getEmployeeCity_Name() + ", getEmployeeResident_Address()=" + getEmployeeResident_Address()
+				+ ", getEmployeeMarried_status()=" + getEmployeeMarried_status() + ", getEmployeeEmail()="
+				+ getEmployeeEmail() + ", getEmployeePassword()=" + getEmployeePassword()
+				+ ", getEmployeeJoining_Date()=" + getEmployeeJoining_Date() + ", getEmployeeBankData()="
+				+ getEmployeeBankData() + ", getProfiles()=" + getProfiles() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
 }
