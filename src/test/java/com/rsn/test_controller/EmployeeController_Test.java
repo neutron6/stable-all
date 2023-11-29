@@ -31,7 +31,6 @@ import com.rsn.repository.EmployeeRepo;
 import com.rsn.serviceimpl.EmployeeServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-@SuiteClasses(EmployeeController.class)
 public class EmployeeController_Test {
 
 	@InjectMocks

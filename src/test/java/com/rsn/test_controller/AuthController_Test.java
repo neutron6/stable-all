@@ -34,7 +34,6 @@ import com.rsn.security.JWTUtil;
 import net.bytebuddy.asm.Advice.This;
 
 @RunWith(MockitoJUnitRunner.class)
-@SuiteClasses(AuthController.class)
 public class AuthController_Test {
 
 	@InjectMocks

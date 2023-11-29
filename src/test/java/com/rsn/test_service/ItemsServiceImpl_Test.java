@@ -1,18 +1,15 @@
 package com.rsn.test_service;
 
 import static org.junit.Assert.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.argThat;
-import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.util.NoSuchElementException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -20,7 +17,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
@@ -51,35 +47,16 @@ public class ItemsServiceImpl_Test {
 		MockitoAnnotations.initMocks(this);
 	}
 
-	/*
-	 * @Test void test_buyItems() throws ItemNotFoundException { EmployeeBankData
-	 * employeeBankData = new EmployeeBankData();
-	 * employeeBankData.setBankBalance("100"); // initial bank balance
-	 * 
-	 * Items items = new Items(); items.setItemName("TestItem");
-	 * items.setItemPrice("10"); // item price
-	 * 
-	 * // Set up repository mocks
-	 * when(employeeBankDataRepo.findById(anyInt())).thenReturn(Optional.of(
-	 * employeeBankData));
-	 * when(itemsRepo.findByItemName("TestItem")).thenReturn(Optional.of(items));
-	 * when(employeeBankDataRepo.save(any(EmployeeBankData.class))).thenReturn(
-	 * employeeBankData); when(itemsRepo.save(any(Items.class))).thenReturn(items);
-	 * 
-	 * // Call the method Items result = itemsServiceImpl.buyItems("TestItem", "2",
-	 * 1);
-	 * 
-	 * // Verify interactions and assert the result
-	 * verify(employeeBankDataRepo).findById(1);
-	 * verify(itemsRepo).findByItemName("TestItem");
-	 * verify(employeeBankDataRepo).save(argThat(emp -> { assertEquals("80",
-	 * employeeBankData.getBankBalance()); // expected bank balance after buying 2
-	 * items return true; })); verify(itemsRepo).save(items);
-	 * 
-	 * assertEquals(items, result);
-	 * 
-	 * }
-	 */
+	@Test
+	void test_createItems() {
+		Items items = new Items(1L, "ss", "50");
+		List<Items> list = new ArrayList<>();
+		list.add(items);
+		when(itemsRepo.save(any())).thenReturn(list);
+		assertNotNull(itemsServiceImpl.createItems(list));
+
+	}
+
 	@Test
 	void test_buyItems() throws RecordNotFoundException, ItemNotFoundException, InvalidInputException {
 		AccountPin accountPin = new AccountPin();

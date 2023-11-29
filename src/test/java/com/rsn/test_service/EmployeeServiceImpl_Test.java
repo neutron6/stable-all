@@ -3,8 +3,6 @@ package com.rsn.test_service;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,7 +12,6 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite.SuiteClasses;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
@@ -23,12 +20,10 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.Employee;
-import com.rsn.model.EmployeeBankData;
 import com.rsn.repository.EmployeeRepo;
 import com.rsn.serviceimpl.EmployeeServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
-@SuiteClasses(EmployeeServiceImpl.class)
 public class EmployeeServiceImpl_Test {
 
 	@InjectMocks
