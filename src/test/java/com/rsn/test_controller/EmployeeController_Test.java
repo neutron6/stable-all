@@ -59,7 +59,7 @@ public class EmployeeController_Test {
 	@Test
 	void test_deleteAccountAPI() throws RecordNotFoundException {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		doNothing().when(employeeServiceImpl).deleteEmployeeDataByUsingId(1);
@@ -69,7 +69,7 @@ public class EmployeeController_Test {
 	@Test
 	void test_updateAccountAPI() throws RecordNotFoundException {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		when(employeeServiceImpl.updateEmployeeDataByUsingId(1, employee1)).thenReturn(employee1);
 		assertNotNull(mockEmployeeController.updateAccountAPI(1, employee1));
 	}
@@ -77,7 +77,7 @@ public class EmployeeController_Test {
 	@Test
 	void test_getAllData() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		when(employeeServiceImpl.getAllEmployeeData()).thenReturn(list);
@@ -87,7 +87,7 @@ public class EmployeeController_Test {
 	@Test
 	void test_searchAPI() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		when(employeeServiceImpl.searchEmployeeUsingAnyField(anyString())).thenReturn(list);
