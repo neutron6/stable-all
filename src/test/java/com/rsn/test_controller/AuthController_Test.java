@@ -62,7 +62,7 @@ public class AuthController_Test {
 	@Test
 	public void test_registerHandler() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		String encodedPass = passwordEncoder.encode(employee1.getEmployeePassword());
 		employee1.setEmployeePassword(encodedPass);
 		when(employeeRepo.save(any())).thenReturn(employee1);
