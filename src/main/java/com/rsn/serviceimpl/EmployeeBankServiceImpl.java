@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsn.exception.InvalidAccountPinException;
 import com.rsn.exception.OutOfLimitException;
@@ -20,6 +21,7 @@ public class EmployeeBankServiceImpl implements EmployeeBankService {
 	@Autowired
 	private EmployeeBankDataRepo employeeBankDataRepo;
 
+	@Transactional
 	@Override
 	public EmployeeBankData createBankDetails(EmployeeBankData employeeBankData) {
 		return employeeBankDataRepo.save(employeeBankData);
@@ -35,6 +37,7 @@ public class EmployeeBankServiceImpl implements EmployeeBankService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public EmployeeBankData withDrawMoneyFromBankAccount(Integer bankId, String amount, String pin)
 			throws RecordNotFoundException, InvalidAccountPinException, OutOfLimitException {

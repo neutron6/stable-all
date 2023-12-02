@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import com.rsn.serviceimpl.ItemsServiceImpl;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
+@EnableTransactionManagement
 @RequestMapping("/api/v3")
 public class ItemController {
 	Logger logger = LoggerFactory.getLogger(EmployeeController.class);
