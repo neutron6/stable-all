@@ -30,7 +30,7 @@ public class ImageServiceImpl {
 			Image image2 = new Image(id, ImageUtils.compressImage(file.getBytes()));
 			return imageRepo.save(image2);
 		} else {
-			throw new RecordNotFoundException();
+			throw new NullPointerException();
 		}
 
 	}
