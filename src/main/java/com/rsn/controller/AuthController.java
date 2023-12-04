@@ -36,7 +36,7 @@ public class AuthController {
 
 	@Transactional
 	@PostMapping("/register")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<String> registerHandler(@RequestBody Employee employee) {
 		String encodedPass = passwordEncoder.encode(employee.getEmployeePassword());
 		employee.setEmployeePassword(encodedPass);
