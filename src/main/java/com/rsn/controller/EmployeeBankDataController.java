@@ -35,7 +35,7 @@ public class EmployeeBankDataController {
 	private EmployeeBankServiceImpl employeeBankServiceImpl;
 
 	@PostMapping("/createbankdata")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<String> createBankAccountAPI(@RequestBody EmployeeBankData employeeBankData) {
 		employeeBankServiceImpl.createBankDetails(employeeBankData);
 		return ResponseEntity.ok("Bank account created");
