@@ -40,9 +40,9 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_getAllEmployeeData() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		Employee employee2 = new Employee(2, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		list.add(employee2);
@@ -54,7 +54,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_deleteEmployeeDataByUsingId() throws RecordNotFoundException {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 
@@ -66,7 +66,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_deleteEmployeeDataByUsingId_Exception() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 
@@ -80,10 +80,10 @@ public class EmployeeServiceImpl_Test {
 
 	@Test
 	public void test_updateEmployeeDataByUsingId() throws RecordNotFoundException {
-		Optional<Employee> employee1 = Optional
-				.of(new Employee(1, "rushi", "nichit", "Pune", "PP", "Single", "@gmail", "123", LocalDate.now(), null));
+		Optional<Employee> employee1 = Optional.of(new Employee(1, "rushi", "nichit", "Pune", "PP", "Single", "@gmail",
+				"123", LocalDate.now(), null, null));
 		Employee updatedEmp = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 
 		Mockito.when(mock_EmployeeRepo.findById(1)).thenReturn(employee1);
 		assertNull(mockEmployeeServiceImpl.updateEmployeeDataByUsingId(1, updatedEmp));
@@ -93,7 +93,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_updateEmployeeDataByUsingId_Exception() {
 		Employee updatedEmp = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		try {
 			assertNotNull(mockEmployeeServiceImpl.updateEmployeeDataByUsingId(1, updatedEmp));
 		} catch (RecordNotFoundException e) {
@@ -106,11 +106,11 @@ public class EmployeeServiceImpl_Test {
 	public void test_searchEmployeeUsingAnyField() {
 		String query = "James";
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		Employee employee2 = new Employee(1, "James", "IOP", "Belgium", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null);
+				LocalDate.now(), null, null);
 		Employee employee3 = new Employee(1, "aakash", "Rao", "Pune", "PP", "Single", "@gmail", "123", LocalDate.now(),
-				null);
+				null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		list.add(employee2);

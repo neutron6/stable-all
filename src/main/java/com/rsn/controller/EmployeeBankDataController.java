@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,6 +25,7 @@ import com.rsn.serviceimpl.EmployeeBankServiceImpl;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController
+@EnableTransactionManagement
 @RequestMapping("/api/v1")
 public class EmployeeBankDataController {
 
@@ -55,8 +57,8 @@ public class EmployeeBankDataController {
 		String p = employeeBankServiceImpl.getEmployeeBalance(bankId).toString();
 		logger.info("****** withdrawYourAmountAPI is working ********");
 		return ResponseEntity.ok("** Transaction Completed **" + " Bank Balance->> " + p);
-	} 
- 
+	}
+
 	@GetMapping("/search")
 	@ResponseStatus(value = HttpStatus.FOUND)
 	public ResponseEntity<List<EmployeeBankData>> searchAPI(@RequestParam("query") String query) {

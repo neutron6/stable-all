@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rsn.exception.InvalidInputException;
 import com.rsn.exception.ItemNotFoundException;
@@ -24,6 +25,7 @@ public class ItemsServiceImpl implements ItemsService {
 	@Autowired
 	private EmployeeBankDataRepo employeeBankDataRepo;
 
+	@Transactional
 	@Override
 	public List<Items> createItems(List<Items> items) {
 		return itemsRepo.saveAll(items);

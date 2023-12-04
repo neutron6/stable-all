@@ -49,7 +49,7 @@ public class Employee {
 	 * password field from being included in the JSON response.
 	 */
 	@Column(name = "Employee_Password")
-	//@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	// @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String employeePassword;
 
 	@Column(name = "Employee_Joining_Date")
@@ -58,6 +58,10 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "fk_empbank_id")
 	private EmployeeBankData employeeBankData;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn
+	private Image image;
 
 	public Integer getId() {
 		return id;
@@ -139,9 +143,17 @@ public class Employee {
 		this.employeeBankData = employeeBankData;
 	}
 
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
+	}
+
 	public Employee(Integer id, String employeeFirst_Name, String employeeLast_Name, String employeeCity_Name,
 			String employeeResident_Address, String employeeMarried_status, String employeeEmail,
-			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData) {
+			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData, Image image) {
 		super();
 		this.id = id;
 		this.employeeFirst_Name = employeeFirst_Name;
@@ -153,6 +165,7 @@ public class Employee {
 		this.employeePassword = employeePassword;
 		this.employeeJoining_Date = employeeJoining_Date;
 		this.employeeBankData = employeeBankData;
+		this.image = image;
 	}
 
 	public Employee() {
@@ -166,14 +179,15 @@ public class Employee {
 				+ employeeLast_Name + ", employeeCity_Name=" + employeeCity_Name + ", employeeResident_Address="
 				+ employeeResident_Address + ", employeeMarried_status=" + employeeMarried_status + ", employeeEmail="
 				+ employeeEmail + ", employeePassword=" + employeePassword + ", employeeJoining_Date="
-				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", getId()=" + getId()
-				+ ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name() + ", getEmployeeLast_Name()="
+				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", image=" + image + ", getId()="
+				+ getId() + ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name() + ", getEmployeeLast_Name()="
 				+ getEmployeeLast_Name() + ", getEmployeeCity_Name()=" + getEmployeeCity_Name()
 				+ ", getEmployeeResident_Address()=" + getEmployeeResident_Address() + ", getEmployeeMarried_status()="
 				+ getEmployeeMarried_status() + ", getEmployeeEmail()=" + getEmployeeEmail()
 				+ ", getEmployeePassword()=" + getEmployeePassword() + ", getEmployeeJoining_Date()="
-				+ getEmployeeJoining_Date() + ", getEmployeeBankData()=" + getEmployeeBankData() + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+				+ getEmployeeJoining_Date() + ", getEmployeeBankData()=" + getEmployeeBankData() + ", getImage()="
+				+ getImage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
+				+ super.toString() + "]";
 	}
 
 }
