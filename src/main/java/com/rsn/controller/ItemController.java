@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,7 +23,7 @@ import com.rsn.model.Items;
 import com.rsn.serviceimpl.EmployeeBankServiceImpl;
 import com.rsn.serviceimpl.ItemsServiceImpl;
 
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
+
 
 @RestController
 @EnableTransactionManagement
@@ -37,7 +38,7 @@ public class ItemController {
 	private EmployeeBankServiceImpl employeeBankServiceImpl;
 
 	@PostMapping("/createitem")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<String> createItemAPI(@RequestBody List<Items> items) {
 		itemsServiceImpl.createItems(items);
 		return ResponseEntity.ok("**** item created successfully ***");
