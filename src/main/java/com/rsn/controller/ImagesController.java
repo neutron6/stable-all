@@ -26,7 +26,7 @@ public class ImagesController {
 	private ImageServiceImpl imageServiceImpl;
 
 	@PostMapping("/uploadimage/{employeeid}")
-	@ResponseStatus(value = HttpStatus.CREATED)
+	@ResponseStatus(value = HttpStatus.OK)
 	public ResponseEntity<String> uploadImageAPI(@RequestParam("image") MultipartFile file,
 			@PathVariable("employeeid") Integer id) throws RecordNotFoundException, IOException {
 		imageServiceImpl.uploadProfileFeature(file, id);
