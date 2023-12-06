@@ -62,6 +62,10 @@ public class Employee {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn
 	private Image image;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn
+	private Lic lic;
 
 	public Integer getId() {
 		return id;
@@ -151,9 +155,18 @@ public class Employee {
 		this.image = image;
 	}
 
+	public Lic getLic() {
+		return lic;
+	}
+
+	public void setLic(Lic lic) {
+		this.lic = lic;
+	}
+
 	public Employee(Integer id, String employeeFirst_Name, String employeeLast_Name, String employeeCity_Name,
 			String employeeResident_Address, String employeeMarried_status, String employeeEmail,
-			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData, Image image) {
+			String employeePassword, LocalDate employeeJoining_Date, EmployeeBankData employeeBankData, Image image,
+			Lic lic) {
 		super();
 		this.id = id;
 		this.employeeFirst_Name = employeeFirst_Name;
@@ -166,6 +179,7 @@ public class Employee {
 		this.employeeJoining_Date = employeeJoining_Date;
 		this.employeeBankData = employeeBankData;
 		this.image = image;
+		this.lic = lic;
 	}
 
 	public Employee() {
@@ -179,15 +193,17 @@ public class Employee {
 				+ employeeLast_Name + ", employeeCity_Name=" + employeeCity_Name + ", employeeResident_Address="
 				+ employeeResident_Address + ", employeeMarried_status=" + employeeMarried_status + ", employeeEmail="
 				+ employeeEmail + ", employeePassword=" + employeePassword + ", employeeJoining_Date="
-				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", image=" + image + ", getId()="
-				+ getId() + ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name() + ", getEmployeeLast_Name()="
-				+ getEmployeeLast_Name() + ", getEmployeeCity_Name()=" + getEmployeeCity_Name()
-				+ ", getEmployeeResident_Address()=" + getEmployeeResident_Address() + ", getEmployeeMarried_status()="
-				+ getEmployeeMarried_status() + ", getEmployeeEmail()=" + getEmployeeEmail()
-				+ ", getEmployeePassword()=" + getEmployeePassword() + ", getEmployeeJoining_Date()="
-				+ getEmployeeJoining_Date() + ", getEmployeeBankData()=" + getEmployeeBankData() + ", getImage()="
-				+ getImage() + ", getClass()=" + getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+				+ employeeJoining_Date + ", employeeBankData=" + employeeBankData + ", image=" + image + ", lic=" + lic
+				+ ", getId()=" + getId() + ", getEmployeeFirst_Name()=" + getEmployeeFirst_Name()
+				+ ", getEmployeeLast_Name()=" + getEmployeeLast_Name() + ", getEmployeeCity_Name()="
+				+ getEmployeeCity_Name() + ", getEmployeeResident_Address()=" + getEmployeeResident_Address()
+				+ ", getEmployeeMarried_status()=" + getEmployeeMarried_status() + ", getEmployeeEmail()="
+				+ getEmployeeEmail() + ", getEmployeePassword()=" + getEmployeePassword()
+				+ ", getEmployeeJoining_Date()=" + getEmployeeJoining_Date() + ", getEmployeeBankData()="
+				+ getEmployeeBankData() + ", getImage()=" + getImage() + ", getLic()=" + getLic() + ", getClass()="
+				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
+
+	
 
 }
