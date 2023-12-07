@@ -1,15 +1,13 @@
 package com.rsn.model;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -27,13 +25,13 @@ public class Lic {
 	@Column(name = "pollicy_Name")
 	private String policyName;
 
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	@Column(name = "issue_Date")
-	private Date issueDate;
+	private LocalDate issueDate;
 
-	@Temporal(TemporalType.DATE)
+	//@Temporal(TemporalType.DATE)
 	@Column(name = "expiry_Date")
-	private Date expiryDate;
+	private LocalDate expiryDate;
 
 	@Column(name = "policy_Premium")
 	private String policyPremium; // It is typically paid regularly (e.g., monthly, quarterly, or annually) to
@@ -63,19 +61,19 @@ public class Lic {
 		this.policyName = policyName;
 	}
 
-	public Date getIssueDate() {
+	public LocalDate getIssueDate() {
 		return issueDate;
 	}
 
-	public void setIssueDate(Date issueDate) {
+	public void setIssueDate(LocalDate issueDate) {
 		this.issueDate = issueDate;
 	}
 
-	public Date getExpiryDate() {
+	public LocalDate getExpiryDate() {
 		return expiryDate;
 	}
 
-	public void setExpiryDate(Date expiryDate) {
+	public void setExpiryDate(LocalDate expiryDate) {
 		this.expiryDate = expiryDate;
 	}
 
@@ -103,7 +101,7 @@ public class Lic {
 		this.status = status;
 	}
 
-	public Lic(Integer licId, String policyName, Date issueDate, Date expiryDate, String policyPremium,
+	public Lic(Integer licId, String policyName, LocalDate issueDate, LocalDate expiryDate, String policyPremium,
 			String policyTenure, boolean status) {
 		super();
 		this.licId = licId;
@@ -130,6 +128,5 @@ public class Lic {
 				+ getClass() + ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
 	}
 
-	
 	
 }

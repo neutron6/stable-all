@@ -22,6 +22,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	Logger logger = Logger.getLogger(getClass().getName());
 
+	//public Employee save;
+
 	@Override
 	public List<Employee> getAllEmployeeData() {
 		// TODO Auto-generated method stub
@@ -66,6 +68,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<Employee> employees = employeeRepo.searchEmployees(query);
 		logger.config(query + "**** searchEmployeeUsingAnyField **** working");
 		return employees;
+	}
+
+	public EmployeeBankData save(EmployeeBankData employeeBankData) {
+		// TODO Auto-generated method stub
+		return employeeBankData;
 	}
 
 }
