@@ -20,8 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rsn.exception.LicNotFoundException;
 import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.Employee;
+import com.rsn.model.Lic;
 import com.rsn.repository.EmployeeRepo;
 import com.rsn.serviceimpl.EmployeeServiceImpl;
 
@@ -45,6 +47,15 @@ public class EmployeeController {
 		employeeServiceImpl.updateEmployeeDataByUsingId(id, employee);
 		logger.info("****** updateAccountAPI is working ********");
 		return ResponseEntity.ok("** Account updated successfully **");
+	}
+
+	@GetMapping("/getLicDataByUsingEmployeeId/{id}")
+	@ResponseStatus(value = HttpStatus.OK)
+	public ResponseEntity<Lic> getLicDataByUsingEmployeeIdAPI(@PathVariable("id") Integer id)
+			throws RecordNotFoundException, LicNotFoundException {
+		Lic lic = employeeServiceImpl.getLicDataByUsingEmployeeId(id);
+		return ResponseEntity.ok(lic);
+
 	}
 
 	@DeleteMapping("/deleteaccount/{id}")

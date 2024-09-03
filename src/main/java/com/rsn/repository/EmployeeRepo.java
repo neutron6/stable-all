@@ -15,7 +15,7 @@ public interface EmployeeRepo extends JpaRepository<Employee, Integer> {
 	List<Employee> findAllById(Integer id);
 
 	Optional<Employee> findById(Integer id);
-
+	
 	// Employee saveAll(EmployeeBankData employeeBankData);
 
 	// search api

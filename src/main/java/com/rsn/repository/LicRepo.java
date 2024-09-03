@@ -13,5 +13,7 @@ public interface LicRepo extends JpaRepository<Lic, Integer> {
 	Lic save(Lic lic);
 
 	List<Lic> findByLicId(Integer licId);
+	
+
 
 }

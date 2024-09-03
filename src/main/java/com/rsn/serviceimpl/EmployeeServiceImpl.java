@@ -8,21 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rsn.exception.LicNotFoundException;
 import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.Employee;
 import com.rsn.model.EmployeeBankData;
+import com.rsn.model.Lic;
 import com.rsn.repository.EmployeeRepo;
 import com.rsn.service.EmployeeService;
+import com.rsn.utils.ErrorCodes;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeRepo employeeRepo;
+	private ErrorCodes errorcodes;
 
 	Logger logger = Logger.getLogger(getClass().getName());
 
-	//public Employee save;
+	// public Employee save;
 
 	@Override
 	public List<Employee> getAllEmployeeData() {
@@ -73,6 +77,20 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public EmployeeBankData save(EmployeeBankData employeeBankData) {
 		// TODO Auto-generated method stub
 		return employeeBankData;
+	}
+
+	public Lic getLicDataByUsingEmployeeId(Integer id) throws LicNotFoundException, RecordNotFoundException {
+		// TODO Auto-generated method stub
+		Optional<Employee> lOptional = Optional
+				.of(employeeRepo.findById(id).orElseThrow(() -> new RecordNotFoundException()));
+
+		Lic lic = lOptional.get().getLic();
+
+		if (lic != null) {
+			return lic;
+		} else {
+			throw new LicNotFoundException(errorcodes.LIC_NOT_FOUND.toString());
+		}
 	}
 
 }

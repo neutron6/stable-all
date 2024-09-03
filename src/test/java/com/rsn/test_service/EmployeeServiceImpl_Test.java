@@ -3,6 +3,8 @@ package com.rsn.test_service;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
 import java.time.LocalDate;
@@ -19,9 +21,11 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import com.rsn.exception.LicNotFoundException;
 import com.rsn.exception.RecordNotFoundException;
 import com.rsn.model.Employee;
 import com.rsn.model.EmployeeBankData;
+import com.rsn.model.Lic;
 import com.rsn.repository.EmployeeBankDataRepo;
 import com.rsn.repository.EmployeeRepo;
 import com.rsn.serviceimpl.EmployeeServiceImpl;
@@ -34,30 +38,28 @@ public class EmployeeServiceImpl_Test {
 
 	@Mock
 	private EmployeeRepo mockEmployeeRepo;
-	
+
 	@Mock
 	private EmployeeBankDataRepo mockEmployeeBankDataRepo;
 
-	
 	@BeforeEach
 	void setUp() throws Exception {
 		MockitoAnnotations.initMocks(this);
 	}
-	
+
 	@Test
 	public void test_createBankDetailsAPI() {
-		EmployeeBankData employeeBankData=new EmployeeBankData(23, "25000", "Savings", null);
+		EmployeeBankData employeeBankData = new EmployeeBankData(23, "25000", "Savings", null);
 		when(mockEmployeeBankDataRepo.save(employeeBankData)).thenReturn(employeeBankData);
 		assertNotNull(mockEmployeeServiceImpl.save(employeeBankData));
 	}
-	
 
 	@Test
 	public void test_getAllEmployeeData() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		Employee employee2 = new Employee(2, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		list.add(employee2);
@@ -69,7 +71,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_deleteEmployeeDataByUsingId() throws RecordNotFoundException {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 
@@ -81,7 +83,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_deleteEmployeeDataByUsingId_Exception() {
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 
@@ -96,9 +98,9 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_updateEmployeeDataByUsingId() throws RecordNotFoundException {
 		Optional<Employee> employee1 = Optional.of(new Employee(1, "rushi", "nichit", "Pune", "PP", "Single", "@gmail",
-				"123", LocalDate.now(), null, null,null));
+				"123", LocalDate.now(), null, null, null));
 		Employee updatedEmp = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 
 		Mockito.when(mockEmployeeRepo.findById(1)).thenReturn(employee1);
 		assertNull(mockEmployeeServiceImpl.updateEmployeeDataByUsingId(1, updatedEmp));
@@ -108,7 +110,7 @@ public class EmployeeServiceImpl_Test {
 	@Test
 	public void test_updateEmployeeDataByUsingId_Exception() {
 		Employee updatedEmp = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		try {
 			assertNotNull(mockEmployeeServiceImpl.updateEmployeeDataByUsingId(1, updatedEmp));
 		} catch (RecordNotFoundException e) {
@@ -121,11 +123,11 @@ public class EmployeeServiceImpl_Test {
 	public void test_searchEmployeeUsingAnyField() {
 		String query = "James";
 		Employee employee1 = new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		Employee employee2 = new Employee(1, "James", "IOP", "Belgium", "PP", "Single", "@gmail", "123",
-				LocalDate.now(), null, null,null);
+				LocalDate.now(), null, null, null);
 		Employee employee3 = new Employee(1, "aakash", "Rao", "Pune", "PP", "Single", "@gmail", "123", LocalDate.now(),
-				null, null,null);
+				null, null, null);
 		List<Employee> list = new ArrayList<>();
 		list.add(employee1);
 		list.add(employee2);
@@ -136,4 +138,32 @@ public class EmployeeServiceImpl_Test {
 		assertNotNull(result);
 		assertEquals("James", result.get(1).getEmployeeFirst_Name());
 	}
+
+	@Test
+	public void test_getLicDataByUsingEmployeeId() throws RecordNotFoundException, LicNotFoundException {
+		Lic lic = new Lic(1, "s", LocalDate.now(), LocalDate.now(), "1", "1", true);
+		Optional<Employee> employee = Optional.of(new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail",
+				"123", LocalDate.now(), null, null, lic));
+		Lic lic2 = employee.get().getLic();
+		Mockito.when(mockEmployeeRepo.findById(anyInt())).thenReturn(employee);
+		Mockito.when(mockEmployeeRepo.save(any())).thenReturn(employee);
+		assertNotNull(mockEmployeeServiceImpl.getLicDataByUsingEmployeeId(1));
+	}
+
+	@Test
+	public void test_getLicDataByUsingEmployeeId_Exception() throws LicNotFoundException {
+		Lic lic = new Lic(7, "s", LocalDate.now(), LocalDate.now(), "1", "1", true);
+		Optional<Employee> employee = Optional.of(new Employee(1, "rushi", "nichit", "Nashik", "PP", "Single", "@gmail",
+				"123", LocalDate.now(), null, null, lic));
+		Lic lic2 = employee.get().getLic();
+		Mockito.when(mockEmployeeRepo.findById(1)).thenReturn(employee);
+		Mockito.when(mockEmployeeRepo.save(any())).thenReturn(employee);
+		try {
+			assertNotNull(mockEmployeeServiceImpl.getLicDataByUsingEmployeeId(0));
+		} catch (RecordNotFoundException e) {
+			assertEquals("Record not found", e.getMessage());
+		}
+	}
+	
+
 }
